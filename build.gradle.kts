@@ -1,8 +1,9 @@
+
 group = "ru.ifmo.pds"
 version = "1.0-SNAPSHOT"
 
 plugins {
-    kotlin("jvm") version "1.6.20"
+    kotlin("jvm") version "1.9.22"
     application
 }
 
@@ -12,17 +13,16 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     implementation("ch.qos.logback:logback-classic:1.2.9")
     testImplementation(kotlin("test-junit"))
 }
 
-sourceSets {
-    main {
-        java.setSrcDirs(listOf("src"))
-    }
-    test {
-        java.setSrcDirs(listOf("test"))
-    }
-}
+sourceSets["main"].java.setSrcDirs(listOf("src"))
+sourceSets["test"].java.setSrcDirs(listOf("test"))
